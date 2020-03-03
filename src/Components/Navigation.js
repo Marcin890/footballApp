@@ -52,6 +52,7 @@ const Navigation = props => {
 
   return (
     <>
+      {console.log("navRender")}
       <ul>{competitionsList}</ul>
     </>
   );

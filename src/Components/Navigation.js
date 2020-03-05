@@ -23,11 +23,6 @@ const competitions = [
     path: "/germany"
   },
   {
-    id: "2013",
-    name: "Italy",
-    path: "/italy"
-  },
-  {
     id: "2015",
     name: "France",
     path: "/france"
@@ -44,7 +39,11 @@ const competitions = [
 const Navigation = props => {
   const competitionsList = competitions.map(comp => (
     <li key={comp.id}>
-      <NavLink id={comp.id} to={comp.id} name={comp.id}>
+      <NavLink
+        id={comp.id}
+        to={{ pathname: comp.path, idComp: comp.id }}
+        name={comp.id}
+      >
         {comp.name}
       </NavLink>
     </li>

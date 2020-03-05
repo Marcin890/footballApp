@@ -7,6 +7,7 @@ const Competitions = () => (
     <Route
       path="/:id"
       render={props => <Competition key={props.match.params.id} {...props} />}
+      // component={Competition}
     />
   </Switch>
 );

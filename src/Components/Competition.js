@@ -8,11 +8,12 @@ class Competition extends Component {
   state = {
     data: [],
     isLoaded: false,
-    id: ""
+    id: "",
+    standingType: "total"
   };
 
   getData = () => {
-    const id = this.props.match.params.id;
+    const id = this.props.location.idComp;
 
     const apiUrl = API + id + "/standings";
     fetch(apiUrl, {
@@ -38,14 +39,49 @@ class Competition extends Component {
       .catch(error => console.log(error + " coś nie tak"));
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     console.log("Mount");
     this.getData();
+  }
+
+  changeStandingType = type => {
+    this.setState({
+      standingType: type
+    });
   };
 
   render() {
     const { data } = this.state;
-    return <>{this.state.isLoaded ? <Table data={data} /> : "Wczytuje"}</>;
+    let standings;
+    console.log(data);
+    if (this.state.isLoaded) {
+      switch (this.state.standingType) {
+        case "total":
+          standings = data.standings[0].table;
+          break;
+        case "home":
+          standings = data.standings[1].table;
+          break;
+        case "away":
+          standings = data.standings[2].table;
+          break;
+        default:
+          standings = data.standings[0].table;
+      }
+    }
+
+    return (
+      <>
+        <button onClick={() => this.changeStandingType("total")}>Total</button>
+        <button onClick={() => this.changeStandingType("home")}>Home</button>
+        <button onClick={() => this.changeStandingType("away")}>Away</button>
+        {this.state.isLoaded ? (
+          <Table name={data.competition.name} data={standings} />
+        ) : (
+          "Wczytuje"
+        )}
+      </>
+    );
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Position from "./Position";
+// import Position from "./Position";
 
 const sortTypes = arg => {
   const types = {
@@ -17,10 +17,6 @@ const sortTypes = arg => {
     }
   };
   return types;
-};
-
-const aaa = ss => {
-  return ss;
 };
 
 class Table extends Component {
@@ -43,8 +39,6 @@ class Table extends Component {
   };
 
   render() {
-    console.log(aaa(this.state.sortPosition));
-
     const { data } = this.props;
     console.log(data);
     const { currentSort } = this.state;
@@ -53,7 +47,7 @@ class Table extends Component {
       .map(team => (
         <tr>
           <td>{team.position}</td>
-          <td>{team.team.name}</td>
+          <td>{team.team.name} </td>
           <td>{team.playedGames}</td>
           <td>{team.won}</td>
           <td>{team.draw}</td>
@@ -67,37 +61,69 @@ class Table extends Component {
 
     return (
       <div>
-        <h1>{this.props.name}</h1>
+        <h1 className="competition__title">{this.props.name}</h1>
         <table>
           <thead>
             <tr>
               <td>Position</td>
-              <td>Team</td>
-              <td>Played Games</td>
-              <td>Won</td>
-              <td>Draw</td>
-              <td>Lost</td>
-              <td>Points</td>
-              <td>Goals For</td>
-              <td>Goals Against</td>
-              <td>Goal Difference</td>
+              <td>Team Name</td>
+              <td>P</td>
+              <td>W</td>
+              <td>D</td>
+              <td>L</td>
+              <td>P</td>
+              <td>F</td>
+              <td>A</td>
+              <td>GD</td>
             </tr>
           </thead>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
             <td>
-              <button onClick={() => this.onSortChange("draw")}>sort</button>
-            </td>
-            <td>
-              <button onClick={() => this.onSortChange("lost")}>sort</button>
+              <button onClick={() => this.onSortChange("playedGames")}>
+                <span className={`${sortTypes()[currentSort].class}`}></span>
+              </button>
             </td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+              <button onClick={() => this.onSortChange("playedGames")}>
+                <span className={`${sortTypes()[currentSort].class}`}></span>
+              </button>
+            </td>
+            <td>
+              <button onClick={() => this.onSortChange("won")}>
+                <span className={`${sortTypes()[currentSort].class}`}></span>
+              </button>
+            </td>
+            <td>
+              <button onClick={() => this.onSortChange("draw")}>
+                <span className={`${sortTypes()[currentSort].class}`}></span>
+              </button>
+            </td>
+            <td>
+              <button onClick={() => this.onSortChange("lost")}>
+                <span className={`${sortTypes()[currentSort].class}`}></span>
+              </button>
+            </td>
+            <td>
+              <button onClick={() => this.onSortChange("points")}>
+                <span className={`${sortTypes()[currentSort].class}`}></span>
+              </button>
+            </td>
+            <td>
+              <button onClick={() => this.onSortChange("goalsFor")}>
+                <span className={`${sortTypes()[currentSort].class}`}></span>
+              </button>
+            </td>
+            <td>
+              <button onClick={() => this.onSortChange("goalsAgainst")}>
+                <span className={`${sortTypes()[currentSort].class}`}></span>
+              </button>
+            </td>
+            <td>
+              <button onClick={() => this.onSortChange("goalDifference")}>
+                <span className={`${sortTypes()[currentSort].class}`}></span>
+              </button>
+            </td>
           </tr>
 
           {/* <Position data={this.props.data} /> */}

@@ -1,23 +1,29 @@
 import React, { Component } from "react";
-import "./App.scss";
-
-import Navigation from "./Navigation";
-import Competitions from "./Competitions";
 import { BrowserRouter as Router } from "react-router-dom";
-// import Competition from "./Competition";
+import Header from "./Header";
+import Navigation from "./Navigation";
+import Page from "./Page";
+import Footer from "./Footer";
+import "../Styles/App.scss";
 
-// https://www.football-data.org/documentation/quickstart
+// Api: https://www.football-data.org/documentation/quickstart
 
 class App extends Component {
   state = {};
-
   render() {
-    console.log("render-app");
     return (
       <Router>
         <div className="app">
-          <Navigation />
-          <Competitions />
+          <header className="header">{<Header />}</header>
+          <main>
+            <aside>
+              <Navigation />
+            </aside>
+            <section className="page">
+              <Page />
+            </section>
+          </main>
+          <footer className="footer">{<Footer />}</footer>
         </div>
       </Router>
     );

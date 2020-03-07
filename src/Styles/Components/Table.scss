@@ -1,0 +1,18 @@
+.table {
+  &__img {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.sort,
+.sort-up,
+.sort-down {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 12px;
+  height: 12px;
+  display: block;
+  background-image: url("../../Images/sort.svg");
+}

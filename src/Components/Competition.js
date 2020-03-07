@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Table from "./Table";
+import Tabs from "./Tabs";
 
 const API = "http://api.football-data.org/v2/competitions/";
 const APIKey = "25c6ef44df8547c99cd22e9b0d9f9841";
@@ -8,13 +9,11 @@ class Competition extends Component {
   state = {
     data: [],
     isLoaded: false,
-    id: "",
     standingType: "total"
   };
 
   getData = () => {
     const id = this.props.location.idComp;
-
     const apiUrl = API + id + "/standings";
     fetch(apiUrl, {
       headers: {
@@ -23,7 +22,6 @@ class Competition extends Component {
     })
       .then(response => {
         if (response.ok) {
-          // console.log(response);
           return response;
         }
         throw Error(response.status);
@@ -32,19 +30,17 @@ class Competition extends Component {
       .then(data => {
         this.setState({
           data,
-          isLoaded: true,
-          id
+          isLoaded: true
         });
       })
-      .catch(error => console.log(error + " coś nie tak"));
+      .catch(error => console.log(error + "Something wrong"));
   };
 
   componentDidMount() {
-    console.log("Mount");
     this.getData();
   }
 
-  changeStandingType = type => {
+  changeTableType = type => {
     this.setState({
       standingType: type
     });
@@ -53,7 +49,6 @@ class Competition extends Component {
   render() {
     const { data } = this.state;
     let standings;
-    console.log(data);
     if (this.state.isLoaded) {
       switch (this.state.standingType) {
         case "total":
@@ -69,18 +64,16 @@ class Competition extends Component {
           standings = data.standings[0].table;
       }
     }
-
     return (
-      <>
-        <button onClick={() => this.changeStandingType("total")}>Total</button>
-        <button onClick={() => this.changeStandingType("home")}>Home</button>
-        <button onClick={() => this.changeStandingType("away")}>Away</button>
+      <div className="competition">
+        <Tabs click={this.changeTableType} />
+
         {this.state.isLoaded ? (
           <Table name={data.competition.name} data={standings} />
         ) : (
-          "Wczytuje"
+          "Loading"
         )}
-      </>
+      </div>
     );
   }
 }

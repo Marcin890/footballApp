@@ -1,0 +1,98 @@
+// fonts
+html {
+  font-size: 8px;
+  @include mq(s) {
+    font-size: 9px;
+  }
+  @include mq(m) {
+    font-size: 10px;
+  }
+}
+
+// Layout
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  font-family: $font-primary;
+  font-weight: 100;
+  font-size: 1.6rem;
+}
+
+main {
+  flex-grow: 1;
+  flex-basis: 100%;
+  display: flex;
+  margin: $space-l 0;
+  flex-wrap: wrap;
+}
+
+aside {
+  flex-basis: 100%;
+  @include mq(m) {
+    flex-basis: 25%;
+  }
+}
+
+section.page {
+  flex-grow: 1;
+}
+
+// List
+ul,
+ol {
+  list-style-type: none;
+  li {
+    margin-bottom: $space-xs;
+  }
+}
+
+// Link
+a {
+  text-decoration: none;
+  color: $color-primary;
+  &:hover {
+    color: $color-secondary;
+  }
+}
+
+// Button
+button {
+  border: $border;
+  background: none;
+  padding: $space-s;
+  &:hover {
+    background: $color-secondary;
+    color: white;
+  }
+}
+
+// Table
+table {
+  border: none;
+  border-collapse: collapse;
+  button {
+    border: none;
+  }
+}
+
+tr {
+  &:nth-child(odd) {
+    background: white;
+  }
+
+  &:nth-child(even) {
+    background: $color-grey;
+  }
+}
+
+td {
+  border: 0px;
+  padding: $space-xs 0;
+  @include mq(m) {
+    padding: $space-m $space-s;
+  }
+}

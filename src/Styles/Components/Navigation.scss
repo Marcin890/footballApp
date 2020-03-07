@@ -1,0 +1,15 @@
+.nav {
+  margin-bottom: $space-m;
+  &__list {
+  }
+  &__list-item {
+    display: inline;
+    padding-right: $space-s;
+    @include mq(m) {
+      display: list-item;
+    }
+    &--active {
+      color: $color-secondary;
+    }
+  }
+}

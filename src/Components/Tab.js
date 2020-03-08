@@ -9,7 +9,6 @@ class Tab extends Component {
   };
 
   render() {
-    console.log(`${this.props.name}:${this.props.active}`);
     return (
       <button
         className={this.props.active ? "tab--active" : "tab"}

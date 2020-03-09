@@ -13,7 +13,7 @@ class Competition extends Component {
   };
 
   getData = () => {
-    const id = this.props.location.idComp;
+    const id = this.props.match.params.id;
     const apiUrl = API + id + "/standings";
     fetch(apiUrl, {
       headers: {
@@ -39,6 +39,13 @@ class Competition extends Component {
   componentDidMount() {
     this.getData();
   }
+
+  // componentDidUpdate(prevProps) {
+  //   console.log("update");
+  //   if (prevProps.match.params.id !== this.props.match.params.id) {
+  //     this.getData();
+  //   }
+  // }
 
   changeTableType = type => {
     this.setState({

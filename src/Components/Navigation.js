@@ -40,7 +40,7 @@ const Navigation = props => {
     <li className="nav__list-item" key={comp.id}>
       <NavLink
         id={comp.id}
-        to={{ pathname: comp.path, idComp: comp.id }}
+        to={{ pathname: comp.id, idComp: comp.id }}
         name={comp.id}
         activeClassName="nav__list-item--active"
       >

@@ -2,15 +2,25 @@ import React, { Component } from "react";
 import MatchesTable from "./MatchesTable";
 
 const API = "http://api.football-data.org/v2/matches";
+// const API = "http://api.football-data.org/v2/matches?status=SCHEDULED";
 const APIKey = "25c6ef44df8547c99cd22e9b0d9f9841";
 class Matches extends Component {
   state = {
     matches: { id: "ll" },
-    isLoaded: false
+    isLoaded: false,
+    matchDay: ""
+  };
+
+  changeDate = e => {
+    this.setState({
+      matchDay: e.target.value
+    });
   };
 
   getData = () => {
-    const apiUrl = API;
+    const { matchDay } = this.state;
+    const apiUrl =
+      API + (matchDay ? `?dateFrom=${matchDay}&dateTo=${matchDay}` : "");
     fetch(apiUrl, {
       headers: {
         "X-Auth-Token": APIKey
@@ -37,12 +47,18 @@ class Matches extends Component {
     this.getData();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.matchDay !== this.state.matchDay) {
+      this.getData();
+    }
+  }
   render() {
     const { matches } = this.state;
     console.log(this.matches);
     return (
       <>
-        <h1>Today's matches</h1>
+        <input type="date" onChange={this.changeDate} />
+        <h1>{this.state.matchDay}</h1>
         {this.state.isLoaded ? <MatchesTable matches={matches} /> : "Loading"}
       </>
     );

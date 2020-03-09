@@ -4,4 +4,25 @@
     width: auto;
     height: 15px;
   }
+  &__halftime {
+    color: grey;
+  }
+
+  &__status {
+    width: 10px;
+    height: 10px;
+    display: block;
+    &--active {
+      background: green;
+    }
+    &--scheduled {
+      background: none;
+    }
+    &--paused {
+      background: orange;
+    }
+    &--finished {
+      background: black;
+    }
+  }
 }

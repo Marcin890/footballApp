@@ -6,7 +6,7 @@ const API = "http://api.football-data.org/v2/matches";
 const APIKey = "25c6ef44df8547c99cd22e9b0d9f9841";
 class Matches extends Component {
   state = {
-    matches: { id: "ll" },
+    matches: {},
     isLoaded: false,
     matchDay: ""
   };
@@ -52,14 +52,64 @@ class Matches extends Component {
       this.getData();
     }
   }
+
+  getToday = () => {
+    const date = new Date();
+    const dateString = new Date(
+      date.getTime() - date.getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .split("T")[0];
+    return dateString;
+  };
+
+  addToFavorite = id => {
+    console.log(id);
+    const matchesList = Array.from(this.state.matches.matches);
+    matchesList.forEach(match => {
+      if (match.id === id) {
+        match.favorite = !match.favorite;
+      }
+    });
+
+    const matches = this.state.matches;
+    matches.matches = matchesList;
+    this.setState({
+      matches
+    });
+  };
+
   render() {
     const { matches } = this.state;
-    console.log(this.matches);
+
     return (
       <>
-        <input type="date" onChange={this.changeDate} />
-        <h1>{this.state.matchDay}</h1>
-        {this.state.isLoaded ? <MatchesTable matches={matches} /> : "Loading"}
+        <form action="">
+          <label htmlFor="matchDay">Choose Match Day</label>
+          <input
+            type="date"
+            onChange={this.changeDate}
+            defaultValue={this.getToday()}
+            id="matchDay"
+          />
+        </form>
+
+        <h1>
+          Match list:{" "}
+          {this.state.matchDay ? this.state.matchDay : this.getToday()}
+        </h1>
+        {this.state.isLoaded ? (
+          matches.matches.length !== 0 ? (
+            <MatchesTable
+              matches={matches}
+              addToFavorite={this.addToFavorite}
+            />
+          ) : (
+            <h2>No Matches</h2>
+          )
+        ) : (
+          "Loading"
+        )}
       </>
     );
   }

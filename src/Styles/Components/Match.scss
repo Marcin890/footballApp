@@ -16,13 +16,16 @@
       background: green;
     }
     &--scheduled {
-      background: none;
+      background: grey;
     }
     &--paused {
       background: orange;
     }
     &--finished {
       background: black;
+    }
+    &--postponed {
+      background: violet;
     }
   }
 }

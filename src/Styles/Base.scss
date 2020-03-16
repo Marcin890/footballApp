@@ -96,3 +96,22 @@ td {
     padding: $space-m $space-s;
   }
 }
+
+// Form
+form {
+  margin-bottom: $space-l;
+}
+label {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-right: $space-s;
+}
+
+input {
+  padding: $space-s $space-m;
+  border: $border;
+  font-size: 1.6rem;
+  &:active {
+    border-color: red;
+  }
+}

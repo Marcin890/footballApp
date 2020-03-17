@@ -34,12 +34,20 @@ const MatchesTable = props => {
   const favoriteList = favoriteMatches.map(match => (
     <tr>
       <td>
-        <button onClick={() => addToFavorite(match.id)}>-</button>
+        <button
+          title="Remove from favorite"
+          onClick={() => addToFavorite(match.id)}
+        >
+          -
+        </button>
       </td>
       <td>
-        <span className={getMatchStatusClass(match.status)}></span>
+        <span
+          title={match.status.toLowerCase()}
+          className={getMatchStatusClass(match.status)}
+        ></span>
       </td>
-      <td>{match.utcDate.slice(-9, -4)}</td>
+      <td title="start time">{match.utcDate.slice(-9, -4)}</td>
 
       <td>{match.homeTeam.name}</td>
       <td>{match.score.fullTime.homeTeam}</td>
@@ -55,6 +63,7 @@ const MatchesTable = props => {
           class="match__image"
           src={match.competition.area.ensignUrl}
           alt=""
+          title={match.competition.area.name}
         />
       </td>
     </tr>
@@ -63,14 +72,21 @@ const MatchesTable = props => {
   const allList = allMatches.map(match => (
     <tr>
       <td>
-        <button className="btn--add" onClick={() => addToFavorite(match.id)}>
+        <button
+          title="Add to favorite"
+          className="btn--add"
+          onClick={() => addToFavorite(match.id)}
+        >
           +
         </button>
       </td>
       <td>
-        <span className={getMatchStatusClass(match.status)}></span>
+        <span
+          title={match.status.toLowerCase()}
+          className={getMatchStatusClass(match.status)}
+        ></span>
       </td>
-      <td>{match.utcDate.slice(-9, -4)}</td>
+      <td title="start time">{match.utcDate.slice(-9, -4)}</td>
 
       <td>{match.homeTeam.name}</td>
       <td>{match.score.fullTime.homeTeam}</td>
@@ -83,6 +99,7 @@ const MatchesTable = props => {
       </td>
       <td>
         <img
+          title={match.competition.area.name}
           class="match__image"
           src={match.competition.area.ensignUrl}
           alt=""

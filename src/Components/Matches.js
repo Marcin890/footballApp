@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 import MatchesTable from "./MatchesTable";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const API = "http://api.football-data.org/v2/matches";
 // const API = "http://api.football-data.org/v2/matches?status=SCHEDULED";
 const APIKey = "25c6ef44df8547c99cd22e9b0d9f9841";
+
 class Matches extends Component {
   state = {
     matches: {},
     isLoaded: false,
-    matchDay: ""
-  };
-
-  changeDate = e => {
-    this.setState({
-      matchDay: e.target.value
-    });
+    startDate: new Date()
   };
 
   getData = () => {
-    const { matchDay } = this.state;
-    const apiUrl =
-      API + (matchDay ? `?dateFrom=${matchDay}&dateTo=${matchDay}` : "");
+    const { startDate } = this.state;
+    const sDate = startDate.toISOString().slice(0, 10);
+    console.log(sDate);
+    const apiUrl = API + (sDate ? `?dateFrom=${sDate}&dateTo=${sDate}` : "");
     fetch(apiUrl, {
       headers: {
         "X-Auth-Token": APIKey
@@ -48,7 +47,7 @@ class Matches extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.matchDay !== this.state.matchDay) {
+    if (prevState.startDate !== this.state.startDate) {
       this.getData();
     }
   }
@@ -60,6 +59,10 @@ class Matches extends Component {
     )
       .toISOString()
       .split("T")[0];
+
+    dateString.split("").reverse();
+
+    console.log(dateString);
     return dateString;
   };
 
@@ -79,25 +82,32 @@ class Matches extends Component {
     });
   };
 
-  render() {
-    const { matches } = this.state;
+  changeDate = date => {
+    this.setState({
+      startDate: date
+    });
+  };
 
+  render() {
+    console.log(this.state.startDate.toISOString().slice(0, 10));
+    const { matches } = this.state;
+    const ExampleCustomInput = ({ value, onClick }) => (
+      <button className="" onClick={onClick}>
+        {value}
+      </button>
+    );
     return (
       <>
-        <form action="">
-          <label htmlFor="matchDay">Choose Match Day</label>
-          <input
-            type="date"
-            onChange={this.changeDate}
-            defaultValue={this.getToday()}
-            id="matchDay"
-          />
-        </form>
-
         <h1>
-          Match list:{" "}
-          {this.state.matchDay ? this.state.matchDay : this.getToday()}
+          Choose match day{" "}
+          <DatePicker
+            className="myDatePicker"
+            selected={this.state.startDate}
+            onChange={this.changeDate}
+            customInput={<ExampleCustomInput />}
+          />
         </h1>
+
         {this.state.isLoaded ? (
           matches.matches.length !== 0 ? (
             <MatchesTable

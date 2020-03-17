@@ -1,0 +1,27 @@
+.react-datepicker {
+  &__day,
+  &__day-name {
+    width: 3rem;
+    font-size: 1.2rem;
+    padding: 7px;
+    font-weight: normal;
+  }
+  &__day {
+    &--selected {
+      background: $color-secondary;
+    }
+    &--today {
+      font-weight: bold;
+    }
+  }
+  &__current-month {
+    font-size: 1.5rem;
+    padding-bottom: $space-s;
+  }
+  &__header {
+    background: $color-secondary;
+    div {
+      color: white;
+    }
+  }
+}

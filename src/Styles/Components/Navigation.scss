@@ -1,15 +1,40 @@
 .nav {
   margin-bottom: $space-m;
+
   &__list {
+    &--collapsed {
+      display: none;
+      @include mq(l) {
+        display: block;
+      }
+    }
+    &--is-expanded {
+      display: block;
+    }
   }
   &__list-item {
-    display: inline;
+    display: list-item;
     padding-right: $space-s;
-    @include mq(m) {
+    text-align: right;
+    @include mq(l) {
       display: list-item;
+      text-align: left;
     }
     &--active {
       color: $color-secondary;
     }
+  }
+  &__toggle {
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+    @include mq(l) {
+      display: none;
+    }
+  }
+  &__flag {
+    width: 20px;
+    height: auto;
+    margin-right: 10px;
   }
 }

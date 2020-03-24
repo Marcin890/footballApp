@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-// List of competitions (free API): 2000,2001,2002,2003,2013,2014,2015,2016,2017,2018,2019,2021
-const competitions = [
+// List of competitionsData (free API): 2000,2001,2002,2003,2013,2014,2015,2016,2017,2018,2019,2021
+const competitionsData = [
   {
     id: "2021",
     name: "England",
@@ -45,18 +45,17 @@ class Navigation extends Component {
   state = {
     isExpanded: false
   };
-  competitionsList = competitions.map(comp => (
-    <li className="nav__list-item" key={comp.id}>
-      <img className="nav__flag" src={comp.flag} alt="" />
-
+  competitionsList = competitionsData.map(competition => (
+    <li className="nav__list-item" key={competition.id}>
+      <img className="nav__flag" src={competition.flag} alt="" />
       <NavLink
-        id={comp.id}
-        to={{ pathname: comp.id, idComp: comp.id }}
-        name={comp.id}
+        id={competition.id}
+        to={{ pathname: competition.id, idComp: competition.id }}
+        name={competition.id}
         activeClassName="nav__list-item--active"
         onClick={() => this.menuToggle()}
       >
-        {comp.name}
+        {competition.name}
       </NavLink>
     </li>
   ));
@@ -72,7 +71,7 @@ class Navigation extends Component {
     return (
       <nav className="nav">
         <button className="nav__toggle" onClick={() => this.menuToggle()}>
-          Menu
+          <img className="nav__toggle-image" src="menu-icon.svg" alt="" />
         </button>
         <ul
           className={`nav__list--collapsed ${

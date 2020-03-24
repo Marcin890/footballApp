@@ -1,6 +1,6 @@
 // fonts
 html {
-  font-size: 8px;
+  font-size: 10px;
   @include mq(s) {
     font-size: 9px;
   }
@@ -15,18 +15,23 @@ html {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   font-family: $font-primary;
   font-weight: 100;
-  font-size: 1.6rem;
+  font-size: $font-base;
+  background: linear-gradient(to bottom, #2871fa 0%, #6717cd 100%);
+  padding: 45px 25px;
+  color: $color-primary;
+  @include mq(l) {
+    padding: 45px 20%;
+  }
 }
 
 main {
-  flex-grow: 1;
+  // flex-grow: 1;
   flex-basis: 100%;
   display: flex;
-  margin: $space-l 0;
   flex-wrap: wrap;
   flex-direction: row;
 }
@@ -56,7 +61,7 @@ a {
   text-decoration: none;
   color: $color-primary;
   &:hover {
-    color: $color-secondary;
+    color: white;
   }
 }
 
@@ -65,8 +70,9 @@ button {
   border: $border;
   background: none;
   padding: $space-s;
+  border-radius: 7px;
+  color: $color-primary;
   &:hover {
-    background: $color-secondary;
     color: white;
   }
 }
@@ -75,6 +81,7 @@ button {
 table {
   border: none;
   border-collapse: collapse;
+  font-size: $font-base;
   button {
     border: none;
   }
@@ -82,17 +89,19 @@ table {
 
 tr {
   &:nth-child(odd) {
-    background: white;
+    background: $bg-bright;
   }
 
   &:nth-child(even) {
-    background: $color-grey;
+    background: $bg-dark;
   }
 }
 
 td {
   border: 0px;
   padding: $space-xs 0;
+  color: $color-primary;
+  padding: 20px 5px;
   @include mq(l) {
     padding: $space-m $space-s;
   }
@@ -115,4 +124,11 @@ input {
   &:active {
     border-color: red;
   }
+}
+
+// Typography
+h2 {
+  margin-top: $space-xl;
+  margin-bottom: $space-m;
+  font-size: $font-h2;
 }

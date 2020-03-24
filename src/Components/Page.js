@@ -8,7 +8,6 @@ const Page = () => (
     <Route
       path="/:id"
       render={props => <Competition key={props.match.params.id} {...props} />}
-      // component={Competition />}
     />
     <Route path="/" exact component={Matches} />} />
   </Switch>

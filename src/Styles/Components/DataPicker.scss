@@ -1,4 +1,7 @@
 .react-datepicker {
+  background: $bg-bright;
+  width: 100%;
+
   &__day,
   &__day-name {
     width: 3rem;
@@ -7,8 +10,9 @@
     font-weight: normal;
   }
   &__day {
+    color: $color-primary;
     &--selected {
-      background: $color-secondary;
+      background: $bg-dark;
     }
     &--today {
       font-weight: bold;
@@ -19,9 +23,35 @@
     padding-bottom: $space-s;
   }
   &__header {
-    background: $color-secondary;
+    background: none;
+    border-bottom: none;
     div {
       color: white;
     }
+  }
+  &__month-container {
+    float: none;
+  }
+  &__triangle {
+    display: none;
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker-popper {
+  width: 100%;
+  position: static !important;
+  transform: none !important;
+  border-radius: 7px;
+  border: $border;
+}
+
+.data-picker {
+  font-size: $font-h3;
+  &__button {
+    width: 100%;
   }
 }

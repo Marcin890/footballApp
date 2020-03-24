@@ -80,25 +80,17 @@ class Competition extends Component {
     this.getData();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   console.log("update");
-  //   if (prevProps.match.params.id !== this.props.match.params.id) {
-  //     this.getData();
-  //   }
-  // }
-
   changeTableType = type => {
     this.setState({
       standingType: type
     });
   };
 
-  render() {
-    const { data } = this.state;
-    console.log(data);
+  getStandingType = () => {
+    const { data, standingType, isLoaded } = this.state;
     let standings;
-    if (this.state.isLoaded) {
-      switch (this.state.standingType) {
+    if (isLoaded) {
+      switch (standingType) {
         case "total":
           standings = data.standings[0].table;
           break;
@@ -111,15 +103,21 @@ class Competition extends Component {
         default:
           standings = data.standings[0].table;
       }
+      return standings;
     }
+  };
+
+  render() {
+    const { data, isLoaded } = this.state;
+    const standingsType = this.getStandingType();
     return (
       <div className="competition">
         <Tabs click={this.changeTableType} />
 
-        {this.state.isLoaded ? (
+        {isLoaded ? (
           <Table
             name={data.competition.name}
-            data={standings}
+            data={standingsType}
             positions={positions[data.competition.id]}
           />
         ) : (

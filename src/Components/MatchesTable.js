@@ -1,8 +1,8 @@
 import React from "react";
+import Match from "./Match";
 const MatchesTable = props => {
-  const matches = props.matches.matches;
+  const { matches } = props.matches;
   const addToFavorite = props.addToFavorite;
-  console.log(matches);
 
   const favoriteMatches = matches.filter(match => match.favorite);
   const allMatches = matches.filter(match => !match.favorite);
@@ -31,89 +31,32 @@ const MatchesTable = props => {
     return matchStatus;
   };
 
-  const favoriteList = favoriteMatches.map(match => (
-    <tr>
-      <td>
-        <button
-          title="Remove from favorite"
-          onClick={() => addToFavorite(match.id)}
-        >
-          -
-        </button>
-      </td>
-      <td>
-        <span
-          title={match.status.toLowerCase()}
-          className={getMatchStatusClass(match.status)}
-        ></span>
-      </td>
-      <td title="start time">{match.utcDate.slice(-9, -4)}</td>
+  const favoriteList = (
+    <Match
+      matches={favoriteMatches}
+      addToFavorite={addToFavorite}
+      getMatchStatusClass={getMatchStatusClass}
+      symbol="-"
+    />
+  );
 
-      <td>{match.homeTeam.name}</td>
-      <td>{match.score.fullTime.homeTeam}</td>
-      <td>:</td>
-      <td>{match.score.fullTime.awayTeam}</td>
-      <td>{match.awayTeam.name}</td>
-      <td className="match__halftime">
-        {match.score.halfTime.homeTeam !== null &&
-          `(${match.score.halfTime.homeTeam} : ${match.score.halfTime.awayTeam})`}
-      </td>
-      <td>
-        <img
-          class="match__image"
-          src={match.competition.area.ensignUrl}
-          alt=""
-          title={match.competition.area.name}
-        />
-      </td>
-    </tr>
-  ));
+  const allList2 = (
+    <Match
+      matches={allMatches}
+      addToFavorite={addToFavorite}
+      getMatchStatusClass={getMatchStatusClass}
+      symbol="+"
+    />
+  );
 
-  const allList = allMatches.map(match => (
-    <tr>
-      <td>
-        <button
-          title="Add to favorite"
-          className="btn--add"
-          onClick={() => addToFavorite(match.id)}
-        >
-          +
-        </button>
-      </td>
-      <td>
-        <span
-          title={match.status.toLowerCase()}
-          className={getMatchStatusClass(match.status)}
-        ></span>
-      </td>
-      <td title="start time">{match.utcDate.slice(-9, -4)}</td>
-
-      <td>{match.homeTeam.name}</td>
-      <td>{match.score.fullTime.homeTeam}</td>
-      <td>:</td>
-      <td>{match.score.fullTime.awayTeam}</td>
-      <td>{match.awayTeam.name}</td>
-      <td className="match__halftime">
-        {match.score.halfTime.homeTeam !== null &&
-          `(${match.score.halfTime.homeTeam} : ${match.score.halfTime.awayTeam})`}
-      </td>
-      <td>
-        <img
-          title={match.competition.area.name}
-          class="match__image"
-          src={match.competition.area.ensignUrl}
-          alt=""
-        />
-      </td>
-    </tr>
-  ));
+  const favoriteTitle = <h2>Favorite matches</h2>;
 
   return (
     <>
-      <h3>{favoriteList.length > 0 ? "Favorite matches" : ""}</h3>
-      <table>{favoriteList}</table>
-      <h3>All matches</h3>
-      <table>{allList}</table>
+      {favoriteMatches.length > 0 ? favoriteTitle : ""}
+      <table class="match-table">{favoriteList}</table>
+      <h2>All matches</h2>
+      <table class="match-table">{allList2}</table>
     </>
   );
 };

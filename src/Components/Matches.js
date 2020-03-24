@@ -17,9 +17,8 @@ class Matches extends Component {
 
   getData = () => {
     const { startDate } = this.state;
-    const sDate = startDate.toISOString().slice(0, 10);
-    console.log(sDate);
-    const apiUrl = API + (sDate ? `?dateFrom=${sDate}&dateTo=${sDate}` : "");
+    const date = startDate.toISOString().slice(0, 10);
+    const apiUrl = API + (date ? `?dateFrom=${date}&dateTo=${date}` : "");
     fetch(apiUrl, {
       headers: {
         "X-Auth-Token": APIKey
@@ -61,13 +60,10 @@ class Matches extends Component {
       .split("T")[0];
 
     dateString.split("").reverse();
-
-    console.log(dateString);
     return dateString;
   };
 
   addToFavorite = id => {
-    console.log(id);
     const matchesList = Array.from(this.state.matches.matches);
     matchesList.forEach(match => {
       if (match.id === id) {
@@ -89,22 +85,20 @@ class Matches extends Component {
   };
 
   render() {
-    console.log(this.state.startDate.toISOString().slice(0, 10));
     const { matches } = this.state;
-    const ExampleCustomInput = ({ value, onClick }) => (
-      <button className="" onClick={onClick}>
+    const DataCustomInput = ({ value, onClick }) => (
+      <button className="data-picker__button" onClick={onClick}>
         {value}
       </button>
     );
     return (
       <>
         <h1>
-          Choose match day{" "}
           <DatePicker
             className="myDatePicker"
             selected={this.state.startDate}
             onChange={this.changeDate}
-            customInput={<ExampleCustomInput />}
+            customInput={<DataCustomInput />}
           />
         </h1>
 
@@ -115,7 +109,7 @@ class Matches extends Component {
               addToFavorite={this.addToFavorite}
             />
           ) : (
-            <h2>No Matches</h2>
+            <h2>There are no matches on this day</h2>
           )
         ) : (
           "Loading"

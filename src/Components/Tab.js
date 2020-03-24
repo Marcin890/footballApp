@@ -9,12 +9,13 @@ class Tab extends Component {
   };
 
   render() {
+    const { active, name } = this.props;
     return (
       <button
-        className={this.props.active ? "tab--active" : "tab"}
+        className={active ? "tab--active" : "tab"}
         onClick={this.handleClick}
       >
-        {this.props.name}
+        {name}
       </button>
     );
   }

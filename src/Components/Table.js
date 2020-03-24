@@ -19,14 +19,26 @@ const sortTypes = arg => {
   return types;
 };
 
+const tableHeader = [
+  { text: "Position", title: "Position", sort: "position" },
+  { text: "Team Name", title: "Team Name", sort: "" },
+  { text: "P", title: "Played Games", sort: "playedGames" },
+  { text: "W", title: "Won", sort: "won" },
+  { text: "D", title: "Draw", sort: "draw" },
+  { text: "L", title: "Lost", sort: "lost" },
+  { text: "P", title: "Points", sort: "points" },
+  { text: "F", title: "Goals For", sort: "goalsFor" },
+  { text: "A", title: "Goals Against", sort: "goalsAgainst" },
+  { text: "GD", title: "Goal Difference", sort: "goalDifference" }
+];
+
 class Table extends Component {
   state = {
     currentSort: "default",
-    sortPosition: "ppp"
+    sortPosition: ""
   };
 
-  onSortChange = typs => {
-    console.log("click");
+  sortChange = types => {
     const { currentSort } = this.state;
     let nextSort;
     if (currentSort === "down") nextSort = "up";
@@ -34,31 +46,35 @@ class Table extends Component {
     else if (currentSort === "default") nextSort = "down";
     this.setState({
       currentSort: nextSort,
-      sortPosition: typs
+      sortPosition: types
     });
   };
 
-  checkPosition = post => {
+  checkPosition = arg => {
     const { positions } = this.props;
-    let classN;
+    let className;
     positions.map(position =>
       position.position.map(pos =>
-        pos === post ? (classN = position.class) : null
+        pos === arg ? (className = position.class) : null
       )
     );
-    return classN;
+    return className;
   };
 
   render() {
-    const { data, positions } = this.props;
-    console.log(positions.championsLeauge);
-    const { currentSort } = this.state;
+    const { data } = this.props;
+    console.log(data);
+    const { currentSort, sortPosition } = this.state;
     const teams = [...data]
-      .sort(sortTypes(this.state.sortPosition)[currentSort].fn)
+      .sort(sortTypes(sortPosition)[currentSort].fn)
       .map(team => (
         <tr>
           <td>
-            <span className={`position ${this.checkPosition(team.position)}`}>
+            <span
+              className={`table__position table__position--${this.checkPosition(
+                team.position
+              )}`}
+            >
               {team.position}
             </span>
           </td>
@@ -80,86 +96,23 @@ class Table extends Component {
         <table>
           <thead>
             <tr>
-              <td>Position</td>
-              <td>Team Name</td>
-              <td title="Played Games">P</td>
-              <td title="Won">W</td>
-              <td title="Draw">D</td>
-              <td title="Lost">L</td>
-              <td title="Points">P</td>
-              <td title="Goals For">F</td>
-              <td title="Goals Against">A</td>
-              <td title="Goal Difference">GD</td>
+              {tableHeader.map(t => (
+                <td title={t.title}>{t.text}</td>
+              ))}
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <button
-                  title="Sort"
-                  onClick={() => this.onSortChange("playedGames")}
-                >
-                  <span className={`${sortTypes()[currentSort].class}`}></span>
-                </button>
-              </td>
-              <td></td>
-              <td>
-                <button
-                  title="Sort"
-                  onClick={() => this.onSortChange("playedGames")}
-                >
-                  <span className={`${sortTypes()[currentSort].class}`}></span>
-                </button>
-              </td>
-              <td>
-                <button title="Sort" onClick={() => this.onSortChange("won")}>
-                  <span className={`${sortTypes()[currentSort].class}`}></span>
-                </button>
-              </td>
-              <td>
-                <button title="Sort" onClick={() => this.onSortChange("draw")}>
-                  <span className={`${sortTypes()[currentSort].class}`}></span>
-                </button>
-              </td>
-              <td>
-                <button title="Sort" onClick={() => this.onSortChange("lost")}>
-                  <span className={`${sortTypes()[currentSort].class}`}></span>
-                </button>
-              </td>
-              <td>
-                <button
-                  title="Sort"
-                  onClick={() => this.onSortChange("points")}
-                >
-                  <span className={`${sortTypes()[currentSort].class}`}></span>
-                </button>
-              </td>
-              <td>
-                <button
-                  title="Sort"
-                  onClick={() => this.onSortChange("goalsFor")}
-                >
-                  <span className={`${sortTypes()[currentSort].class}`}></span>
-                </button>
-              </td>
-              <td>
-                <button
-                  title="Sort"
-                  onClick={() => this.onSortChange("goalsAgainst")}
-                >
-                  <span className={`${sortTypes()[currentSort].class}`}></span>
-                </button>
-              </td>
-              <td>
-                <button
-                  title="Sort"
-                  onClick={() => this.onSortChange("goalDifference")}
-                >
-                  <span className={`${sortTypes()[currentSort].class}`}></span>
-                </button>
-              </td>
+            <tr class="table__sort">
+              {tableHeader.map(t => (
+                <td>
+                  <button title="Sort" onClick={() => this.sortChange(t.sort)}>
+                    <span
+                      className={`${sortTypes()[currentSort].class}`}
+                    ></span>
+                  </button>
+                </td>
+              ))}
             </tr>
-
             {teams}
           </tbody>
         </table>

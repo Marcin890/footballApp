@@ -14,16 +14,16 @@ class Tabs extends Component {
   };
 
   render() {
-    const tableTypeButton = tableType.map(t => (
+    const tableTypeButton = tableType.map(type => (
       <Tab
-        key={t}
-        active={t === this.state.activeTab}
+        key={type}
+        active={type === this.state.activeTab}
         click={this.props.click}
-        name={t}
+        name={type}
         changeActiveTab={this.changeActiveTab}
       />
     ));
-    // console.log(this.state.activeTab);
+
     return <div className="competition__tabs">{tableTypeButton}</div>;
   }
 }

@@ -28,9 +28,20 @@
     display: block;
     margin-right: 0;
     margin-left: auto;
+    position: absolute;
+    top: 45px;
+    right: 25px;
+    border: none;
+    &:hover {
+      border: none;
+    }
     @include mq(l) {
       display: none;
     }
+  }
+  &__toggle-image {
+    width: 36px;
+    height: auto;
   }
   &__flag {
     width: 20px;

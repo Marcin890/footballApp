@@ -1,9 +1,7 @@
 .header {
-  flex-basis: 15vh;
-  padding: $space-l 0;
-  border-bottom: $border;
-
+  margin-bottom: $space-xl;
   &__title {
-    text-align: center;
+    text-align: left;
+    font-size: $font-h1;
   }
 }

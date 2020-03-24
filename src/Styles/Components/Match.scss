@@ -1,17 +1,43 @@
+.match-table {
+  width: 100%;
+}
+
 .match {
+  &__start-time {
+    font-weight: 200;
+  }
+
   &__image {
     display: block;
-    width: auto;
-    height: 15px;
+    width: 24px;
+    height: auto;
+    margin: 0 auto;
   }
   &__halftime {
     color: grey;
   }
 
+  &__add-favorite {
+    margin: 0 auto;
+  }
+  &__status-wrapper {
+    width: 20px;
+    height: 20px;
+    background: $bg-dark;
+    display: flex;
+    border-radius: 50%;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 2px solid $color-primary;
+    &:hover {
+      background: red;
+    }
+  }
   &__status {
-    width: 10px;
-    height: 10px;
-    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
     &--active {
       background: green;
     }

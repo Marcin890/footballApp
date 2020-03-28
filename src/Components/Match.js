@@ -1,5 +1,4 @@
 import React from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../Styles/Animations.css";
 
 const Match = props => {

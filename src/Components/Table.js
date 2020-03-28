@@ -4,15 +4,15 @@ import React, { Component } from "react";
 const sortTypes = arg => {
   const types = {
     up: {
-      class: "sort-up",
+      class: "sort--up",
       fn: (a, b) => a[arg] - b[arg]
     },
     down: {
-      class: "sort-down",
+      class: "sort--down",
       fn: (a, b) => b[arg] - a[arg]
     },
     default: {
-      class: "sort",
+      class: "sort--default",
       fn: (a, b) => a
     }
   };
@@ -92,7 +92,7 @@ class Table extends Component {
 
     return (
       <div>
-        <h2 className="competition__title">{this.props.name}</h2>
+        <h2 className="table__title">{this.props.name}</h2>
         <table className="table">
           <thead>
             <tr>
@@ -106,7 +106,7 @@ class Table extends Component {
               {tableHeader.map(t => (
                 <td>
                   <button
-                    className="table__button"
+                    className="sort"
                     title="Sort"
                     onClick={() => this.sortChange(t.sort)}
                   >

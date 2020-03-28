@@ -54,9 +54,9 @@ const MatchesTable = props => {
   return (
     <>
       {favoriteMatches.length > 0 ? favoriteTitle : ""}
-      <table class="match-table">{favoriteList}</table>
+      <table class="matches">{favoriteList}</table>
       <h2>All matches</h2>
-      <table class="match-table">{allList2}</table>
+      <table class="matches">{allList2}</table>
     </>
   );
 };

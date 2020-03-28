@@ -7,9 +7,7 @@
       padding: 15px;
     }
   }
-  &__button {
-    padding: 0;
-  }
+
   &__img {
     width: 10px;
     height: 10px;
@@ -27,7 +25,6 @@
     border-radius: 50%;
     color: $color-primary;
     opacity: 1;
-    // border: 1px solid white;
     &--champions {
       background: rgb(3, 86, 100);
     }
@@ -47,16 +44,4 @@
       background: rgb(145, 60, 11);
     }
   }
-}
-
-.sort,
-.sort-up,
-.sort-down {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 12px;
-  height: 12px;
-  display: block;
-  background-image: url("../../Images/sort.svg");
 }

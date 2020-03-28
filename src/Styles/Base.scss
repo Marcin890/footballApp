@@ -12,10 +12,11 @@ html {
 body {
   background: linear-gradient(to bottom, #2871fa 0%, #6717cd 100%);
 }
-// Layout
 
+// Layout
 .app {
   min-height: 100vh;
+  padding: $margin-body;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,21 +24,17 @@ body {
   font-family: $font-primary;
   font-weight: 100;
   font-size: $font-base;
-  padding: 45px 25px;
   color: $color-primary;
   @include mq(l) {
-    width: 1024px;
-    margin: 0 auto;
+    width: 1200px;
   }
 }
 
 main {
-  // flex-grow: 1;
-  flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  min-height: 63vh;
+  flex-grow: 1;
   @include mq(l) {
     flex-direction: row;
   }
@@ -46,14 +43,13 @@ main {
 aside {
   flex-basis: 100%;
   @include mq(l) {
-    flex-basis: 30%;
-    padding-right: 25px;
+    flex-basis: 33.3%;
+    padding-right: $space-l;
   }
 }
 
 section.page {
-  flex-grow: 1;
-  flex-basis: 70%;
+  flex-basis: 66.6%;
 }
 
 // List
@@ -61,7 +57,7 @@ ul,
 ol {
   list-style-type: none;
   li {
-    margin-bottom: $space-xs;
+    margin: 0;
   }
 }
 
@@ -69,8 +65,9 @@ ol {
 a {
   text-decoration: none;
   color: $color-primary;
+  transition: $transition;
   &:hover {
-    color: white;
+    color: $color-primary;
   }
 }
 
@@ -79,10 +76,11 @@ button {
   border: $border;
   background: none;
   padding: $space-s;
-  border-radius: 7px;
+  border-radius: $border-radius;
   color: $color-primary;
+  transition: $transition;
   &:hover {
-    color: white;
+    color: $color-primary;
   }
 }
 
@@ -111,6 +109,7 @@ td {
   padding: $space-xs 0;
   color: $color-primary;
   padding: 20px 5px;
+
   @include mq(l) {
     padding: $space-m $space-s;
   }
@@ -130,29 +129,15 @@ input {
   padding: $space-s $space-m;
   border: $border;
   font-size: 1.6rem;
-  &:active {
-    border-color: red;
-  }
 }
 
 // Typography
+
+h1 {
+  font-size: $font-h1;
+}
 h2 {
   margin-top: $space-xl;
   margin-bottom: $space-m;
   font-size: $font-h2;
-}
-
-.item-enter {
-  opacity: 0;
-}
-.item-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-.item-exit {
-  opacity: 1;
-}
-.item-exit-active {
-  opacity: 0;
-  transition: opacity 500ms ease-in;
 }

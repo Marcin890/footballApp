@@ -97,7 +97,7 @@ class Matches extends Component {
   render() {
     this.desktopViewport.addListener(this.changeVieport);
     const { matches } = this.state;
-    console.log(this.state.viewport);
+    console.log(this.state.matches.matches);
     const DataCustomInput = ({ value, onClick }) => (
       <button className="data-picker__button" onClick={onClick}>
         {value}

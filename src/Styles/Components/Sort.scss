@@ -1,0 +1,37 @@
+.sort {
+  padding: 0;
+  border: $border;
+  padding: 5px;
+  @include mq(m) {
+    padding: 7px;
+  }
+  border-radius: 50%;
+  transition: $transition;
+  &:hover {
+    background-color: $color-hover;
+  }
+
+  &--default,
+  &--up,
+  &--down {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 8px;
+    height: 8px;
+    display: block;
+    @include mq(m) {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  &--default {
+    background-image: url("../../Images/sort.svg");
+  }
+  &--up {
+    background-image: url("../../Images/sort.svg");
+  }
+  &--down {
+    background-image: url("../../Images/sort.svg");
+  }
+}

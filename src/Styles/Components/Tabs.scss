@@ -2,9 +2,13 @@
   border: none;
   font-size: $font-h4;
   padding: $space-s $space-m;
+  transition: $transition;
+  &:hover {
+    background-color: $bg-hover;
+  }
   &--active {
     background: $bg-dark;
-    color: white;
+    color: $color-primary;
     border: none;
     font-size: $font-h4;
     padding: $space-s $space-m;

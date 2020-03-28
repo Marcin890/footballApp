@@ -1,15 +1,52 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap");
-
 $font-primary: "Open Sans", sans-serif;
 
 // Colors
 $color-primary: rgb(255, 255, 255);
 $color-secondary: rgb(0, 0, 0);
 $color-grey: rgb(230, 230, 230);
+$color-hover: rgb(58, 8, 135);
 
 // Border
 $border: 1px solid $color-primary;
+$border-radius: 7px;
+// Margin
+$margin-body: 45px 25px;
+
+// Space
+$space-xs: 7.892px;
+$space-s: 11.237px;
+$space-m: 16px;
+$space-mm: 25.629px;
+$space-l: 32.437px;
+$space-xl: 46.184px;
+$space-2xl: 93.628px;
+// Font size
+$font-xs: 0.5rem;
+$font-s: 1rem;
+$font-base: 1.3rem;
+$font-h4: 1.4625rem;
+$font-h3: 1.6rem;
+$font-h2: 2.082rem;
+$font-h1: 2.635rem;
+
+// Backgrounds
+$bg-bright: rgba(
+  $color: #ffffff,
+  $alpha: 0.1
+);
+$bg-dark: rgba(
+  $color: #ffffff,
+  $alpha: 0.3
+);
+$bg-hover: rgba(
+  $color: #3a0887,
+  $alpha: 0.7
+);
+
+// Transition
+$transition: 0.3s;
 
 // Breakpoints
 $breakpoints: (
@@ -29,32 +66,6 @@ $breakpoints: (
     min-width: 1200px
   )
 );
-// Space
-$space-xs: 7.892px;
-$space-s: 11.237px;
-$space-m: 16px;
-$space-l: 32.437px;
-$space-xl: 46.184px;
-$space-2xl: 93.628px;
-// Font size
-$font-xs: 0.5rem;
-$font-s: 1rem;
-$font-base: 1.3rem;
-$font-h4: 1.6rem;
-$font-h3: 1.4625rem;
-$font-h2: 2.082rem;
-$font-h1: 2.635rem;
-
-// Backgrounds
-$bg-bright: rgba(
-  $color: #ffffff,
-  $alpha: 0.1
-);
-$bg-dark: rgba(
-  $color: #ffffff,
-  $alpha: 0.3
-);
-
 // Media query
 @mixin mq($breakpoint) {
   $size: map-get($breakpoints, $breakpoint);

@@ -36,7 +36,7 @@
       background: $bg-dark;
     }
     &--today {
-      font-weight: bold;
+      font-weight: 500;
       border: $border;
       border-radius: 5px;
     }
@@ -95,6 +95,9 @@
   &__button {
     width: 100%;
     font-size: $font-h4;
+    &:hover {
+      background: $bg-hover;
+    }
 
     @include mq(s) {
       width: 30%;

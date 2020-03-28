@@ -1,5 +1,14 @@
 .nav {
   margin-bottom: $space-m;
+  &__mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #6717cd 0%, #2871fa 100%);
+    z-index: 999;
+  }
   &__list {
     &--collapsed {
       display: none;
@@ -14,14 +23,12 @@
   }
   &__list-item {
     display: flex;
-    padding: 0 25px;
+    padding: 0;
+    padding-left: $space-mm;
     text-align: left;
     font-size: $font-h4;
     color: $color-primary;
-    margin: 0;
-    &:hover {
-      background: red;
-    }
+    transition: $transition;
 
     &:nth-child(odd) {
       background: $bg-bright;
@@ -30,27 +37,23 @@
     &:nth-child(even) {
       background: $bg-dark;
     }
-    &--active {
-      font-weight: bold;
+    &:hover {
+      background: $bg-hover;
     }
     a {
       flex-grow: 1;
-      padding: 20px 0px;
-
-      &:hover {
-        color: black;
-      }
+      padding: $space-mm 0px;
     }
-  }
-  &__flag {
-    width: 20px;
-    height: auto;
-    margin-right: 10px;
-    display: block;
   }
   &__flag-wrapper {
     display: flex;
     align-items: center;
+  }
+  &__flag {
+    width: 20px;
+    height: auto;
+    margin-right: $space-s;
+    display: block;
   }
   &__toggle {
     display: block;
@@ -71,14 +74,4 @@
     width: 36px;
     height: auto;
   }
-}
-
-.nav__mobile {
-  position: absolute;
-
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, #6717cd 0%, #2871fa 100%);
-  z-index: 999;
 }

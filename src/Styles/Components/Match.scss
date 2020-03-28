@@ -1,12 +1,10 @@
-.match-table {
+.matches {
   width: 100%;
 }
 
 .match {
-  &__title {
-  }
   &__start-time {
-    font-weight: 200;
+    font-weight: 100;
   }
 
   &__no-match {
@@ -38,13 +36,14 @@
     align-content: center;
     flex-wrap: wrap;
     justify-content: center;
-    border: 2px solid $color-primary;
+    border: $border;
   }
   &__favorite-wrapper {
     width: 30px;
     height: 30px;
+    transition: $transition;
     &:hover {
-      // background: red;
+      background-color: $bg-hover;
     }
   }
   &__status {

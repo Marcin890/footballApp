@@ -79,7 +79,15 @@ class Navigation extends Component {
     return (
       <nav className={`nav ${isExpanded ? "nav__mobile" : ""}`}>
         <button className="nav__toggle" onClick={() => this.menuToggle()}>
-          <img className="nav__toggle-image" src="menu-icon.svg" alt="" />
+          {!isExpanded ? (
+            <img className="nav__toggle-image" src="menu-icon.svg" alt="" />
+          ) : (
+            <img
+              className="nav__toggle-image"
+              src="menu-icon-closed.svg"
+              alt=""
+            />
+          )}
         </button>
         <ul
           className={`nav__list--collapsed ${

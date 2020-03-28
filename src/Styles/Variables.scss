@@ -9,7 +9,7 @@ $color-secondary: rgb(0, 0, 0);
 $color-grey: rgb(230, 230, 230);
 
 // Border
-$border: 2px solid $color-primary;
+$border: 1px solid $color-primary;
 
 // Breakpoints
 $breakpoints: (
@@ -37,9 +37,10 @@ $space-l: 32.437px;
 $space-xl: 46.184px;
 $space-2xl: 93.628px;
 // Font size
-$font-xs: 5px;
-$font-s: 10px;
+$font-xs: 0.5rem;
+$font-s: 1rem;
 $font-base: 1.3rem;
+$font-h4: 1.6rem;
 $font-h3: 1.4625rem;
 $font-h2: 2.082rem;
 $font-h1: 2.635rem;

@@ -12,7 +12,17 @@ class Matches extends Component {
   state = {
     matches: {},
     isLoaded: false,
-    startDate: new Date()
+    startDate: new Date(),
+    viewport: ""
+  };
+
+  desktopViewport = window.matchMedia("screen and (min-width:640px)");
+
+  changeVieport = () => {
+    console.log("kkk");
+    this.setState({
+      viewport: this.desktopViewport.matches
+    });
   };
 
   getData = () => {
@@ -85,7 +95,9 @@ class Matches extends Component {
   };
 
   render() {
+    this.desktopViewport.addListener(this.changeVieport);
     const { matches } = this.state;
+    console.log(this.state.viewport);
     const DataCustomInput = ({ value, onClick }) => (
       <button className="data-picker__button" onClick={onClick}>
         {value}
@@ -98,6 +110,7 @@ class Matches extends Component {
             className="myDatePicker"
             selected={this.state.startDate}
             onChange={this.changeDate}
+            monthsShown={this.desktopViewport.matches ? 2 : 1}
             customInput={<DataCustomInput />}
           />
         </h1>
@@ -109,7 +122,10 @@ class Matches extends Component {
               addToFavorite={this.addToFavorite}
             />
           ) : (
-            <h2>There are no matches on this day</h2>
+            <>
+              <h2>There are no matches on this day. May choose another day</h2>
+              <img className="match__no-match" src="no_matches.svg" alt="" />
+            </>
           )
         ) : (
           "Loading"

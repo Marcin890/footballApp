@@ -3,8 +3,16 @@
 }
 
 .match {
+  &__title {
+  }
   &__start-time {
     font-weight: 200;
+  }
+
+  &__no-match {
+    max-width: 300px;
+    display: block;
+    margin: 0 auto;
   }
 
   &__image {
@@ -20,7 +28,8 @@
   &__add-favorite {
     margin: 0 auto;
   }
-  &__status-wrapper {
+  &__status-wrapper,
+  &__favorite-wrapper {
     width: 20px;
     height: 20px;
     background: $bg-dark;
@@ -30,8 +39,12 @@
     flex-wrap: wrap;
     justify-content: center;
     border: 2px solid $color-primary;
+  }
+  &__favorite-wrapper {
+    width: 30px;
+    height: 30px;
     &:hover {
-      background: red;
+      // background: red;
     }
   }
   &__status {

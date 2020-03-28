@@ -1,25 +1,55 @@
 .react-datepicker {
   background: $bg-bright;
+  border: none;
   width: 100%;
-
+  display: flex;
+  &__week,
+  &__day-names {
+    display: flex;
+  }
+  &__navigation {
+    border: 8px solid transparent;
+    &--previous {
+      border-right-color: white;
+      left: 10px;
+    }
+    &--next {
+      border-left-color: white;
+      right: 10px;
+    }
+  }
   &__day,
   &__day-name {
+    display: block;
     width: 3rem;
     font-size: 1.2rem;
-    padding: 7px;
+    padding: 10px 0;
     font-weight: normal;
+    font-size: $font-h4;
+    flex-basis: 14%;
+    margin: 0;
   }
   &__day {
     color: $color-primary;
+
     &--selected {
       background: $bg-dark;
     }
     &--today {
       font-weight: bold;
+      border: $border;
+      border-radius: 5px;
+    }
+    &--outside-month {
+      opacity: 0.3;
+      font-weight: 100;
+    }
+    &:hover {
+      background: $bg-dark;
     }
   }
   &__current-month {
-    font-size: 1.5rem;
+    font-size: $font-h4;
     padding-bottom: $space-s;
   }
   &__header {
@@ -31,9 +61,21 @@
   }
   &__month-container {
     float: none;
+    flex-basis: 100%;
+    @include mq(s) {
+      flex-basis: 50%;
+    }
   }
   &__triangle {
     display: none;
+  }
+  &__input-container {
+    &:before {
+      content: "";
+      @include mq(s) {
+        content: "Choose Match Day:";
+      }
+    }
   }
 }
 
@@ -50,8 +92,13 @@
 }
 
 .data-picker {
-  font-size: $font-h3;
   &__button {
     width: 100%;
+    font-size: $font-h4;
+
+    @include mq(s) {
+      width: 30%;
+      float: right;
+    }
   }
 }

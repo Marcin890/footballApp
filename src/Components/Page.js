@@ -5,10 +5,7 @@ import Matches from "./Matches";
 
 const Page = () => (
   <Switch>
-    <Route
-      path="/:id"
-      render={props => <Competition key={props.match.params.id} {...props} />}
-    />
+    <Route path="/:id" component={Competition} />
     <Route path="/" exact component={Matches} />} />
   </Switch>
 );

@@ -10,6 +10,7 @@ import "../Styles/App.scss";
 
 class App extends Component {
   state = {};
+
   render() {
     return (
       <Router>

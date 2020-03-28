@@ -49,7 +49,8 @@ class Competition extends Component {
   state = {
     data: [],
     isLoaded: false,
-    standingType: "total"
+    standingType: "total",
+    id: ""
   };
 
   getData = () => {
@@ -70,7 +71,8 @@ class Competition extends Component {
       .then(data => {
         this.setState({
           data,
-          isLoaded: true
+          isLoaded: true,
+          id
         });
       })
       .catch(error => console.log(error + "Something wrong"));
@@ -78,6 +80,13 @@ class Competition extends Component {
 
   componentDidMount() {
     this.getData();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("sskdffdh");
+    if (this.props.match.params.id !== this.state.id) {
+      this.getData();
+    }
   }
 
   changeTableType = type => {

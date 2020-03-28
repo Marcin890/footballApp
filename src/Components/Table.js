@@ -20,9 +20,9 @@ const sortTypes = arg => {
 };
 
 const tableHeader = [
-  { text: "Position", title: "Position", sort: "position" },
+  { text: "P", title: "Position", sort: "position" },
   { text: "Team Name", title: "Team Name", sort: "" },
-  { text: "P", title: "Played Games", sort: "playedGames" },
+  { text: "G", title: "Played Games", sort: "playedGames" },
   { text: "W", title: "Won", sort: "won" },
   { text: "D", title: "Draw", sort: "draw" },
   { text: "L", title: "Lost", sort: "lost" },
@@ -75,7 +75,7 @@ class Table extends Component {
                 team.position
               )}`}
             >
-              {team.position}
+              <span className="table__position-number">{team.position}</span>
             </span>
           </td>
           <td>{team.team.name} </td>
@@ -92,8 +92,8 @@ class Table extends Component {
 
     return (
       <div>
-        <h1 className="competition__title">{this.props.name}</h1>
-        <table>
+        <h2 className="competition__title">{this.props.name}</h2>
+        <table className="table">
           <thead>
             <tr>
               {tableHeader.map(t => (
@@ -102,10 +102,14 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr class="table__sort">
+            <tr className="table__sort">
               {tableHeader.map(t => (
                 <td>
-                  <button title="Sort" onClick={() => this.sortChange(t.sort)}>
+                  <button
+                    className="table__button"
+                    title="Sort"
+                    onClick={() => this.sortChange(t.sort)}
+                  >
                     <span
                       className={`${sortTypes()[currentSort].class}`}
                     ></span>

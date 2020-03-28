@@ -1,4 +1,7 @@
 import React from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "../Styles/Animations.css";
+
 const Match = props => {
   const { matches, addToFavorite, getMatchStatusClass, symbol } = props;
   const allList = matches.map(match => (
@@ -36,7 +39,7 @@ const Match = props => {
         />
       </td>
       <td>
-        <div className="match__status-wrapper">
+        <div className="match__favorite-wrapper">
           <button
             title="Add to favorite"
             className="match__addFavorite"

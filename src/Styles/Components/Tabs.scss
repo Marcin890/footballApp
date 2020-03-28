@@ -1,6 +1,12 @@
 .tab {
+  border: none;
+  font-size: $font-h4;
+  padding: $space-s $space-m;
   &--active {
-    background: $color-secondary;
+    background: $bg-dark;
     color: white;
+    border: none;
+    font-size: $font-h4;
+    padding: $space-s $space-m;
   }
 }

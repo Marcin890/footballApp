@@ -1,6 +1,5 @@
 .nav {
   margin-bottom: $space-m;
-
   &__list {
     &--collapsed {
       display: none;
@@ -10,19 +9,48 @@
     }
     &--is-expanded {
       display: block;
+      margin-top: 100px;
     }
   }
   &__list-item {
-    display: list-item;
-    padding-right: $space-s;
-    text-align: right;
-    @include mq(l) {
-      display: list-item;
-      text-align: left;
+    display: flex;
+    padding: 0 25px;
+    text-align: left;
+    font-size: $font-h4;
+    color: $color-primary;
+    margin: 0;
+    &:hover {
+      background: red;
+    }
+
+    &:nth-child(odd) {
+      background: $bg-bright;
+    }
+
+    &:nth-child(even) {
+      background: $bg-dark;
     }
     &--active {
-      color: $color-secondary;
+      font-weight: bold;
     }
+    a {
+      flex-grow: 1;
+      padding: 20px 0px;
+
+      &:hover {
+        color: black;
+      }
+    }
+  }
+  &__flag {
+    width: 20px;
+    height: auto;
+    margin-right: 10px;
+    display: block;
+  }
+  &__flag-wrapper {
+    display: flex;
+    align-items: center;
   }
   &__toggle {
     display: block;
@@ -43,9 +71,14 @@
     width: 36px;
     height: auto;
   }
-  &__flag {
-    width: 20px;
-    height: auto;
-    margin-right: 10px;
-  }
+}
+
+.nav__mobile {
+  position: absolute;
+
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #6717cd 0%, #2871fa 100%);
+  z-index: 999;
 }

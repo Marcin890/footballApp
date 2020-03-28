@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 // List of competitionsData (free API): 2000,2001,2002,2003,2013,2014,2015,2016,2017,2018,2019,2021
 const competitionsData = [
@@ -47,13 +47,15 @@ class Navigation extends Component {
   };
   competitionsList = competitionsData.map(competition => (
     <li className="nav__list-item" key={competition.id}>
-      <img className="nav__flag" src={competition.flag} alt="" />
+      <div className="nav__flag-wrapper">
+        <img className="nav__flag" src={competition.flag} alt="" />
+      </div>
       <NavLink
+        activeClassName="activevvvv"
         id={competition.id}
         to={{ pathname: competition.id, idComp: competition.id }}
         name={competition.id}
-        activeClassName="nav__list-item--active"
-        onClick={() => this.menuToggle()}
+        onClick={() => this.menuClose()}
       >
         {competition.name}
       </NavLink>
@@ -66,10 +68,16 @@ class Navigation extends Component {
     });
   }
 
+  menuClose(e) {
+    this.setState({
+      isExpanded: false
+    });
+  }
+
   render() {
     const { isExpanded } = this.state;
     return (
-      <nav className="nav">
+      <nav className={`nav ${isExpanded ? "nav__mobile" : ""}`}>
         <button className="nav__toggle" onClick={() => this.menuToggle()}>
           <img className="nav__toggle-image" src="menu-icon.svg" alt="" />
         </button>
@@ -78,6 +86,16 @@ class Navigation extends Component {
             isExpanded ? "nav__list--is-expanded" : ""
           }`}
         >
+          <li className="nav__list-item">
+            <NavLink
+              id="home"
+              to="/"
+              name="home"
+              onClick={() => this.menuClose()}
+            >
+              Home
+            </NavLink>
+          </li>
           {this.competitionsList}
         </ul>
       </nav>

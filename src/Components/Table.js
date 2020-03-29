@@ -63,12 +63,11 @@ class Table extends Component {
 
   render() {
     const { data } = this.props;
-    console.log(data);
     const { currentSort, sortPosition } = this.state;
     const teams = [...data]
       .sort(sortTypes(sortPosition)[currentSort].fn)
       .map(team => (
-        <tr>
+        <tr key={team.position}>
           <td>
             <span
               className={`table__position table__position--${this.checkPosition(
@@ -95,16 +94,18 @@ class Table extends Component {
         <h2 className="table__title">{this.props.name}</h2>
         <table className="table">
           <thead>
-            <tr>
+            <tr key="table_header">
               {tableHeader.map(t => (
-                <td title={t.title}>{t.text}</td>
+                <td key={t.title} title={t.title}>
+                  {t.text}
+                </td>
               ))}
             </tr>
           </thead>
           <tbody>
-            <tr className="table__sort">
+            <tr key="table_sort" className="table__sort">
               {tableHeader.map(t => (
-                <td>
+                <td key={t.sort}>
                   <button
                     className="sort"
                     title="Sort"

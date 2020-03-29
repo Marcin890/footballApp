@@ -105,3 +105,16 @@
     }
   }
 }
+
+input.myDatePicker {
+  width: 100%;
+  font-size: $font-h4;
+  &:hover {
+    background: $bg-hover;
+  }
+
+  @include mq(s) {
+    width: 30%;
+    float: right;
+  }
+}

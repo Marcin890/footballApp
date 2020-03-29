@@ -1,14 +1,17 @@
-.item-enter {
+.fade-appear {
   opacity: 0;
+  z-index: 1;
 }
-.item-enter-active {
+.fade-appear.fade-appear-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transition: 700ms linear;
 }
-.item-exit {
-  opacity: 1;
-}
-.item-exit-active {
+
+.fade-enter {
   opacity: 0;
-  transition: opacity 500ms ease-in;
+  z-index: 1;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: 700ms linear;
 }

@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const API = "http://api.football-data.org/v2/matches";
+const API = "https://api.football-data.org/v2/matches";
 // const API = "http://api.football-data.org/v2/matches?status=SCHEDULED";
 const APIKey = "25c6ef44df8547c99cd22e9b0d9f9841";
 
@@ -19,7 +19,6 @@ class Matches extends Component {
   desktopViewport = window.matchMedia("screen and (min-width:640px)");
 
   changeVieport = () => {
-    console.log("kkk");
     this.setState({
       viewport: this.desktopViewport.matches
     });
@@ -42,7 +41,6 @@ class Matches extends Component {
       })
       .then(response => response.json())
       .then(matches => {
-        console.log(matches);
         this.setState({
           matches,
           isLoaded: true
@@ -97,12 +95,7 @@ class Matches extends Component {
   render() {
     this.desktopViewport.addListener(this.changeVieport);
     const { matches } = this.state;
-    console.log(this.state.matches.matches);
-    const DataCustomInput = ({ value, onClick }) => (
-      <button className="data-picker__button" onClick={onClick}>
-        {value}
-      </button>
-    );
+
     return (
       <>
         <h1>
@@ -111,7 +104,6 @@ class Matches extends Component {
             selected={this.state.startDate}
             onChange={this.changeDate}
             monthsShown={this.desktopViewport.matches ? 2 : 1}
-            customInput={<DataCustomInput />}
           />
         </h1>
 

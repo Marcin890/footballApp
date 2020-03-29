@@ -1,5 +1,7 @@
 import React from "react";
 import Match from "./Match";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 const MatchesTable = props => {
   const { matches } = props.matches;
   const addToFavorite = props.addToFavorite;
@@ -54,9 +56,22 @@ const MatchesTable = props => {
   return (
     <>
       {favoriteMatches.length > 0 ? favoriteTitle : ""}
-      <table class="matches">{favoriteList}</table>
+      <table className="matches">
+        <tbody>{favoriteList}</tbody>
+      </table>
       <h2>All matches</h2>
-      <table class="matches">{allList2}</table>
+      <TransitionGroup>
+        <CSSTransition
+          appear={true}
+          timeout={600}
+          classNames="fade"
+          key={props.matches.filters.dateFrom}
+        >
+          <table className="matches">
+            <tbody>{allList2}</tbody>
+          </table>
+        </CSSTransition>
+      </TransitionGroup>
     </>
   );
 };

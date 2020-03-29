@@ -125,12 +125,19 @@ label {
   margin-right: $space-s;
 }
 
+// Input
 input {
-  padding: $space-s $space-m;
   border: $border;
-  font-size: 1.6rem;
+  background: none;
+  padding: $space-s;
+  border-radius: $border-radius;
+  color: $color-primary;
+  transition: $transition;
+  text-align: center;
+  &:hover {
+    color: $color-primary;
+  }
 }
-
 // Typography
 
 h1 {

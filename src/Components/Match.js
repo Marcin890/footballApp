@@ -4,7 +4,7 @@ import "../Styles/Animations.css";
 const Match = props => {
   const { matches, addToFavorite, getMatchStatusClass, symbol } = props;
   const allList = matches.map(match => (
-    <tr>
+    <tr key={match.id}>
       <td>
         <div className="match__status-wrapper">
           <div
@@ -32,7 +32,7 @@ const Match = props => {
       <td>
         <img
           title={match.competition.area.name}
-          class="match__image"
+          className="match__image"
           src={match.competition.area.ensignUrl}
           alt=""
         />

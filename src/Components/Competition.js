@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Table from "./Table";
 import Tabs from "./Tabs";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-const API = "http://api.football-data.org/v2/competitions/";
+const API = "https://api.football-data.org/v2/competitions/";
 const APIKey = "25c6ef44df8547c99cd22e9b0d9f9841";
 
 const positions = {
@@ -83,7 +84,6 @@ class Competition extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("sskdffdh");
     if (this.props.match.params.id !== this.state.id) {
       this.getData();
     }
@@ -118,17 +118,27 @@ class Competition extends Component {
 
   render() {
     const { data, isLoaded } = this.state;
+    // console.log(data);
     const standingsType = this.getStandingType();
     return (
       <div className="competition">
         <Tabs click={this.changeTableType} />
 
         {isLoaded ? (
-          <Table
-            name={data.competition.name}
-            data={standingsType}
-            positions={positions[data.competition.id]}
-          />
+          <TransitionGroup>
+            <CSSTransition
+              appear={true}
+              timeout={600}
+              classNames="fade"
+              key={data.competition.id}
+            >
+              <Table
+                name={data.competition.name}
+                data={standingsType}
+                positions={positions[data.competition.id]}
+              />
+            </CSSTransition>
+          </TransitionGroup>
         ) : (
           "Loading"
         )}

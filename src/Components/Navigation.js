@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 
 // List of competitionsData (free API): 2000,2001,2002,2003,2013,2014,2015,2016,2017,2018,2019,2021
 const competitionsData = [
@@ -89,23 +90,30 @@ class Navigation extends Component {
             />
           )}
         </button>
-        <ul
-          className={`nav__list--collapsed ${
-            isExpanded ? "nav__list--is-expanded" : ""
-          }`}
+        <CSSTransition
+          appear={true}
+          timeout={600}
+          classNames="fade"
+          in={isExpanded}
         >
-          <li className="nav__list-item">
-            <NavLink
-              id="home"
-              to="/"
-              name="home"
-              onClick={() => this.menuClose()}
-            >
-              Home
-            </NavLink>
-          </li>
-          {this.competitionsList}
-        </ul>
+          <ul
+            className={`nav__list--collapsed ${
+              isExpanded ? "nav__list--is-expanded" : ""
+            }`}
+          >
+            <li className="nav__list-item">
+              <NavLink
+                id="home"
+                to="/"
+                name="home"
+                onClick={() => this.menuClose()}
+              >
+                Home
+              </NavLink>
+            </li>
+            {this.competitionsList}
+          </ul>
+        </CSSTransition>
       </nav>
     );
   }

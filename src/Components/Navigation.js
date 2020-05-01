@@ -8,51 +8,52 @@ const competitionsData = [
     id: "2021",
     name: "England",
     path: "/england",
-    flag: "/england.jpg"
+    flag: "/england.jpg",
   },
   {
     id: "2003",
     name: "Netherlands",
     path: "/netherlands",
-    flag: "/netherlands.png"
+    flag: "/netherlands.png",
   },
   {
     id: "2014",
     name: "Spain",
     path: "/spain",
-    flag: "/spain.png"
+    flag: "/spain.png",
   },
   {
     id: "2002",
     name: "Germany",
     path: "/germany",
-    flag: "/germany.png"
+    flag: "/germany.png",
   },
   {
     id: "2015",
     name: "France",
     path: "/france",
-    flag: "/france.png"
+    flag: "/france.png",
   },
   {
     id: "2017",
     name: "Portugal",
     path: "/portugal",
-    flag: "/portugal.png"
-  }
+    flag: "/portugal.png",
+  },
 ];
 
 class Navigation extends Component {
   state = {
-    isExpanded: false
+    isExpanded: false,
   };
-  competitionsList = competitionsData.map(competition => (
+  competitionsList = competitionsData.map((competition) => (
     <li className="nav__list-item" key={competition.id}>
       <div className="nav__flag-wrapper">
         <img className="nav__flag" src={competition.flag} alt="" />
       </div>
       <NavLink
-        activeClassName="activevvvv"
+        exact
+        activeClassName="selected"
         id={competition.id}
         to={{ pathname: competition.id, idComp: competition.id }}
         name={competition.id}
@@ -65,13 +66,13 @@ class Navigation extends Component {
 
   menuToggle(e) {
     this.setState({
-      isExpanded: !this.state.isExpanded
+      isExpanded: !this.state.isExpanded,
     });
   }
 
   menuClose(e) {
     this.setState({
-      isExpanded: false
+      isExpanded: false,
     });
   }
 

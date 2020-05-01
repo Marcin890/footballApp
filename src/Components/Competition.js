@@ -10,7 +10,7 @@ const positions = {
   2021: [
     { position: [1, 2, 3, 4], class: "champions" },
     { position: [5], class: "europa" },
-    { position: [18, 19, 20], class: "relegation" }
+    { position: [18, 19, 20], class: "relegation" },
   ],
   2003: [
     { position: [1], class: "champions" },
@@ -18,32 +18,32 @@ const positions = {
     { position: [3], class: "europa" },
     { position: [4, 5, 6, 7], class: "europa-qualifications" },
     { position: [16], class: "playoffs" },
-    { position: [17, 18], class: "relegation" }
+    { position: [17, 18], class: "relegation" },
   ],
   2014: [
     { position: [1, 2, 3, 4], class: "champions" },
     { position: [5], class: "europa" },
     { position: [6], class: "europa-qualifications" },
-    { position: [18, 19, 20], class: "relegation" }
+    { position: [18, 19, 20], class: "relegation" },
   ],
   2002: [
     { position: [1, 2, 3, 4], class: "champions" },
     { position: [5], class: "europa" },
     { position: [6], class: "europa-qualifications" },
-    { position: [18, 19, 20], class: "relegation" }
+    { position: [18, 19, 20], class: "relegation" },
   ],
   2015: [
     { position: [1, 2, 3, 4], class: "champions" },
     { position: [18, 19, 20], class: "europa" },
     { position: [16], class: "playoffs" },
-    { position: [17, 18], class: "relegation" }
+    { position: [17, 18], class: "relegation" },
   ],
   2017: [
     { position: [1], class: "champions" },
     { position: [2], class: "champions-qualifications" },
     { position: [3, 4], class: "europa" },
-    { position: [17, 18], class: "relegation" }
-  ]
+    { position: [17, 18], class: "relegation" },
+  ],
 };
 
 class Competition extends Component {
@@ -51,7 +51,7 @@ class Competition extends Component {
     data: [],
     isLoaded: false,
     standingType: "total",
-    id: ""
+    id: "",
   };
 
   getData = () => {
@@ -59,24 +59,24 @@ class Competition extends Component {
     const apiUrl = API + id + "/standings";
     fetch(apiUrl, {
       headers: {
-        "X-Auth-Token": APIKey
-      }
+        "X-Auth-Token": APIKey,
+      },
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response;
         }
         throw Error(response.status);
       })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         this.setState({
           data,
           isLoaded: true,
-          id
+          id,
         });
       })
-      .catch(error => console.log(error + "Something wrong"));
+      .catch((error) => console.log(error + "Something wrong"));
   };
 
   componentDidMount() {
@@ -89,9 +89,9 @@ class Competition extends Component {
     }
   }
 
-  changeTableType = type => {
+  changeTableType = (type) => {
     this.setState({
-      standingType: type
+      standingType: type,
     });
   };
 

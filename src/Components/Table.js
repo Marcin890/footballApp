@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 // import Position from "./Position";
 
-const sortTypes = arg => {
+const sortTypes = (arg) => {
   const types = {
     up: {
       class: "sort--up",
-      fn: (a, b) => a[arg] - b[arg]
+      fn: (a, b) => a[arg] - b[arg],
     },
     down: {
       class: "sort--down",
-      fn: (a, b) => b[arg] - a[arg]
+      fn: (a, b) => b[arg] - a[arg],
     },
     default: {
       class: "sort--default",
-      fn: (a, b) => a
-    }
+      fn: (a, b) => a,
+    },
   };
   return types;
 };
@@ -29,16 +29,16 @@ const tableHeader = [
   { text: "P", title: "Points", sort: "points" },
   { text: "F", title: "Goals For", sort: "goalsFor" },
   { text: "A", title: "Goals Against", sort: "goalsAgainst" },
-  { text: "GD", title: "Goal Difference", sort: "goalDifference" }
+  { text: "GD", title: "Goal Difference", sort: "goalDifference" },
 ];
 
 class Table extends Component {
   state = {
     currentSort: "default",
-    sortPosition: ""
+    sortPosition: "",
   };
 
-  sortChange = types => {
+  sortChange = (types) => {
     const { currentSort } = this.state;
     let nextSort;
     if (currentSort === "down") nextSort = "up";
@@ -46,15 +46,15 @@ class Table extends Component {
     else if (currentSort === "default") nextSort = "down";
     this.setState({
       currentSort: nextSort,
-      sortPosition: types
+      sortPosition: types,
     });
   };
 
-  checkPosition = arg => {
+  checkPosition = (arg) => {
     const { positions } = this.props;
     let className;
-    positions.map(position =>
-      position.position.map(pos =>
+    positions.map((position) =>
+      position.position.map((pos) =>
         pos === arg ? (className = position.class) : null
       )
     );
@@ -63,10 +63,11 @@ class Table extends Component {
 
   render() {
     const { data } = this.props;
+    console.log(data);
     const { currentSort, sortPosition } = this.state;
     const teams = [...data]
       .sort(sortTypes(sortPosition)[currentSort].fn)
-      .map(team => (
+      .map((team) => (
         <tr key={team.position}>
           <td>
             <span
@@ -91,11 +92,11 @@ class Table extends Component {
 
     return (
       <div>
-        <h2 className="table__title">{this.props.name}</h2>
+        {/* <h2 className="table__title">{this.props.name}</h2> */}
         <table className="table">
           <thead>
             <tr key="table_header">
-              {tableHeader.map(t => (
+              {tableHeader.map((t) => (
                 <td key={t.title} title={t.title}>
                   {t.text}
                 </td>
@@ -104,17 +105,21 @@ class Table extends Component {
           </thead>
           <tbody>
             <tr key="table_sort" className="table__sort">
-              {tableHeader.map(t => (
+              {tableHeader.map((t) => (
                 <td key={t.sort}>
-                  <button
-                    className="sort"
-                    title="Sort"
-                    onClick={() => this.sortChange(t.sort)}
-                  >
-                    <span
-                      className={`${sortTypes()[currentSort].class}`}
-                    ></span>
-                  </button>
+                  {t.sort ? (
+                    <button
+                      className="sort"
+                      title="Sort"
+                      onClick={() => this.sortChange(t.sort)}
+                    >
+                      <span
+                        className={`${sortTypes()[currentSort].class}`}
+                      ></span>
+                    </button>
+                  ) : (
+                    ""
+                  )}
                 </td>
               ))}
             </tr>

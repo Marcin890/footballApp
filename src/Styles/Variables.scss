@@ -34,15 +34,15 @@ $font-h1: 2.635rem;
 // Backgrounds
 $bg-bright: rgba(
   $color: #ffffff,
-  $alpha: 0.1
+  $alpha: 0.1,
 );
 $bg-dark: rgba(
   $color: #ffffff,
-  $alpha: 0.3
+  $alpha: 0.3,
 );
 $bg-hover: rgba(
   $color: #3a0887,
-  $alpha: 0.7
+  $alpha: 0.7,
 );
 
 // Transition
@@ -51,20 +51,20 @@ $transition: 0.3s;
 // Breakpoints
 $breakpoints: (
   xs: (
-    min-width: 460px
+    min-width: 460px,
   ),
   s: (
-    min-width: 640px
+    min-width: 640px,
   ),
   m: (
-    min-width: 800px
+    min-width: 800px,
   ),
   l: (
-    min-width: 1024px
+    min-width: 1024px,
   ),
   xl: (
-    min-width: 1200px
-  )
+    min-width: 1200px,
+  ),
 );
 // Media query
 @mixin mq($breakpoint) {
